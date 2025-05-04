@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css" />
+        <title>Аниматор</title>
+    </head>
+    <body id="body">
+        <div id="demo" class="demoContainer">
+            <div class="square easeOutSquare"></div>
+            <div class="square easeInSquare"></div>
+            <div class="square linearSquare"></div>
+        </div>
+        <button style="margin-inline: auto;" onclick="toggleDemo()">
+            Вкл/Выкл
+        </button>
+        <button onclick="victory()" onmouseover="cancelOrder(event)" class="cancelOrderButton">
+            Отменить
+        </button>
+    </body>
+    <script>
+        function randint(a, b){
+            return Math.floor(Math.random() * (b - a) + a)
+        }
+
+        function victory(){
+            const target = document.getElementById('body');
+            const newButton = document.createElement('button')
+            newButton.classList.add('buyButton')
+            newButton.innerText = "Потратить"
+            target.append(newButton)
+        }
+
+        function cancelOrder(event){
+            const target = event.target;
+            target.style.marginLeft = `${randint(-50, 1000)}px`;
+            target.style.marginTop = `${randint(-50, 1000)}px`;
+        }
+
+        function toggleDemo(){
+            const demoContainer = document.getElementById('demo')
+            for (var child of demoContainer.children){
+                child.classList.toggle('active')
+            }
+        }
+    </script>
+</html>
